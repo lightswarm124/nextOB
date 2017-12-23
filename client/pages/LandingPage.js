@@ -1,14 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import jump from 'jump.js';
-
-import Logo_Black from '../images/Logo_Black.svg';
-import Icon1 from '../images/LandingPage_Icon1.svg';
-import Icon2 from '../images/LandingPage_Icon2.svg';
-import Icon3 from '../images/LandingPage_Icon3.svg';
-
-/*
-*/
 
 class LandingPage extends React.Component {
     redirectToGithub() {
@@ -17,6 +8,7 @@ class LandingPage extends React.Component {
 
     render() {
         return (
+            </*
             <div className='landingPageContainer'>
 
               <div className="appHeader">
@@ -170,6 +162,7 @@ class LandingPage extends React.Component {
               </div>
 
             </div>
+            */>
         );
     }
 }
