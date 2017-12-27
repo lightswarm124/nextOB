@@ -1,10 +1,29 @@
 import React from 'react'
-import Link from 'next/link'
+import {Layout} from '../components'
 
-export default () =>
-  <div>
-    <h1>Home</h1>
-    <p>Note that Web3 is not loaded for this page.</p>
-    <div><Link href='/dapp'><a>My Dapp</a></Link></div>
-    <div><Link href='/accounts'><a>My Accounts</a></Link></div>
-  </div>
+const Logo = () => (
+	<div className="logo">
+		<img src="/static/Logo_Black.svg" alt="Lightswarm"/>
+		<style>{`
+			.logo {
+			  position:relative;
+			  text-align: center;
+			  display: block;
+			  width: 100%;
+			}
+			.logo img {
+				  width: auto;
+				  height: 30vw;
+				  max-height: 160px;
+			}
+			@media screen and (orientation: landscape) {
+				.logo img { height: 20vw; }
+			}
+			@media screen and (min-width: 1248px) {
+			  .logo img { max-height: 200px !important; }
+			}
+		`}</style>
+	</div>
+)
+
+export default () => (<Layout title="Home" content={Logo}/>)

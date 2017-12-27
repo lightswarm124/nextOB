@@ -1,6 +1,6 @@
 const SimpleStorage = artifacts.require('./SimpleStorage.sol');
 /*
-const ConvertLib = artifacts.require('./ConvertLib.sol');
+const SafeMath = artifacts.require('./SafeMath.sol');
 const MetaCoin = artifacts.require('./MetaCoin.sol');
 */
 module.exports = function (deployer) {
