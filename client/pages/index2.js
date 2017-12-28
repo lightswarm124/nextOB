@@ -56,7 +56,7 @@ const Index2 = () => (
                 }
                 .logo img { width: 10%; height: auto; }
                 .indexHome {
-                    width: 65%;
+                    width: 10%;
                     margin-left: 5%;
                 }
             }
