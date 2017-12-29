@@ -19,6 +19,10 @@ library ERC20Lib {
         self.balances[msg.sender] = _initial_supply;
     }
 
+    function balanceOf(TokenStorage storage self, address _owner) public constant returns (uint balance) {
+        return self.balances[_owner];
+    }
+
     function transfer(TokenStorage storage self, address _to, uint _value) public returns (bool success) {
         self.balances[msg.sender] = self.balances[msg.sender].SafeSub(_value);
         self.balances[_to] = self.balances[_to].SafeAdd(_value);
@@ -34,10 +38,6 @@ library ERC20Lib {
         self.allowed[_from][msg.sender] = _allowance.SafeSub(_value);
         Transfer(_from, _to, _value);
         return true;
-    }
-
-    function balanceOf(TokenStorage storage self, address _owner) public constant returns (uint balance) {
-        return self.balances[_owner];
     }
 
     function approve(TokenStorage storage self, address _spender, uint _value) public returns (bool success) {

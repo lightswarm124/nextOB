@@ -2,7 +2,7 @@ pragma solidity ^0.4.18;
 
 import "./ERC20Lib.sol";
 
-contract BountyTracker {
+contract StandardToken {
     using ERC20Lib for ERC20Lib.TokenStorage;
 
     ERC20Lib.TokenStorage token;
@@ -11,6 +11,9 @@ contract BountyTracker {
     string public symbol = "OBT";
     uint8 public decimals = 8;
     uint INITIAL_SUPPLY = 100000;
+
+    event Transfer(address indexed from, address indexed to, uint value);
+    event Approval(address indexed owner, address indexed spender, uint value);
 
     function BountyTracker() public {
         token.init(INITIAL_SUPPLY);
@@ -22,10 +25,6 @@ contract BountyTracker {
 
     function balanceOf(address who) public constant returns (uint) {
         return token.balanceOf(who);
-    }
-
-    function allowance(address owner, address spender) public constant returns (uint) {
-        return token.allowance(owner, spender);
     }
 
     function transfer(address to, uint value) public returns (bool ok) {
@@ -40,6 +39,7 @@ contract BountyTracker {
         return token.approve(spender, value);
     }
 
-    event Transfer(address indexed from, address indexed to, uint value);
-    event Approval(address indexed owner, address indexed spender, uint value);
+    function allowance(address owner, address spender) public constant returns (uint) {
+        return token.allowance(owner, spender);
+    }
 }
