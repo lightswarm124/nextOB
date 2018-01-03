@@ -37,22 +37,23 @@ library OpenBountyLib {
     function init (BountyStorage storage self) public {
         self.ProjectOwner = msg.sender;
         self.ProjectManagers[msg.sender] = true;
-        self.bountyStatus = lockState.Inactive;
+        self.lockBlockNumber = 0;
+        self.unlockBlockNumber = 0;
     }
 
-    function isBountyManager (BountyStorage storage self) public returns (bool isTrue) {
-        return self.ProjectManagers[msg.sender];
+    function isBountyManager (BountyStorage storage self, address account) view public returns (bool isTrue) {
+        return self.ProjectManagers[account];
     }
 
-    function isProjectOwner (BountyStorage storage self) public returns (bool isTrue) {
-        if (self.ProjectOwner != msg.sender) return false;
+    function isProjectOwner (BountyStorage storage self, address account) view public returns (bool isTrue) {
+        if (self.ProjectOwner != account) return false;
     }
 
-    function changeProjectOwner (BountyStorage storage self, address _newProjectOwner) public returns (bool success) {
-        require (msg.sender == self.ProjectOwner && _newProjectOwner != self.ProjectOwner);
+    function changeProjectOwner (BountyStorage storage self, address _newProjectOwner) public returns (address newOwner) {
+        require (msg.sender == self.ProjectOwner && _newProjectOwner != address(0) && _newProjectOwner != self.ProjectOwner);
         self.ProjectOwner = _newProjectOwner;
-        OwnerChanged(msg.sender, _newProjectOwner);
-        return true;
+        OwnerChanged(msg.sender, self.ProjectOwner);
+        return self.ProjectOwner;
     }
 
     function addManager (BountyStorage storage self, address _newManager) public returns (bool success) {
@@ -86,6 +87,7 @@ library OpenBountyLib {
     }
 
     function submitBounty (BountyStorage storage self, uint _tokenAmount, bytes32 _pullRequestID) public returns (bool success) {
+        require(self.pullRequests[_pullRequestID].pullRequestStatus != lockState.Approved);
         require(self.pullRequests[_pullRequestID].bountyHunter == address(0) || self.pullRequests[_pullRequestID].bountyHunter == msg.sender);
         self.pullRequests[_pullRequestID] = pullRequestStruct ({
             bountyHunter: msg.sender,
@@ -98,8 +100,9 @@ library OpenBountyLib {
     }
 
     function acceptBounty (BountyStorage storage self, bytes32 _pullRequestID) public returns (bool success) {
-        require(self.ProjectManagers[msg.sender] == true && self.pullRequests[_pullRequestID].approveManager == address(0));
+        require(self.pullRequests[_pullRequestID].pullRequestStatus == lockState.Pending && self.ProjectManagers[msg.sender] == true && self.pullRequests[_pullRequestID].approveManager == address(0));
         self.pullRequests[_pullRequestID].approveManager = msg.sender;
+        self.pullRequests[_pullRequestID].pullRequestStatus = lockState.Approved;
         BountyAccepted(msg.sender, self.pullRequests[_pullRequestID].bountyHunter, self.pullRequests[_pullRequestID].bountyValue);
         return true;
     }
