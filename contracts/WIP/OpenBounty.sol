@@ -24,7 +24,7 @@ contract OpenBounty {
     } 
 
     function addManager(address _newManager) public returns (bool success) {
-        return bounty.addmanager(_newManager);
+        return bounty.addManager(_newManager);
     }
 
     function delManager(address _oldManager) public returns (bool success) {
@@ -42,6 +42,4 @@ contract OpenBounty {
     function submitBounty(uint _tokenAmount, bytes32 _pullRequestID) public returns (bool success) {
         return bounty.submitBounty(_tokenAmount, _pullRequestID);
     }
-
-    function acceptBounty(_pullRequestID)
 }
