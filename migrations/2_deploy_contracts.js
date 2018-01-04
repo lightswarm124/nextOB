@@ -14,16 +14,4 @@ module.exports = function (deployer) {
     deployer.deploy(ERC20Lib);
     deployer.link(ERC20Lib, StandardToken);
     deployer.deploy(StandardToken);   
-        
-    /*
-    deployer.link(ERC20Lib, SafeMathLib).then(() => {
-        deployer.deploy(ERC20Lib);
-    });
-    deployer.link(ERC20Lib, StandardToken);
-    deployer.deploy(StandardToken);
-    */
-    /*deployer.deploy(ConvertLib);
-    deployer.link(SimpleStorage, MetaCoin);
-    deployer.deploy(SimpleStorage);
-    */
 }
