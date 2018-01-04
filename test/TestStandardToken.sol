@@ -20,4 +20,6 @@ contract TestStandardToken {
     
         Assert.equal(testToken.balanceOf(tx.origin), expected, "'tx.origin' Address should have 10000 ERC20 Tokens in its balance");
     }
+
+    function
 }
