@@ -7,11 +7,11 @@ const StandardToken = artifacts.require('./WIP/StandardToken.sol');
 const SafeMath = artifacts.require('./SafeMath.sol');
 const MetaCoin = artifacts.require('./MetaCoin.sol');
 */
-module.exports = function (deployer) {
+module.exports = function (deployer, accounts) {
     deployer.deploy(SimpleStorage);
     deployer.deploy(SafeMathLib);
     deployer.link(SafeMathLib, [ ERC20Lib, StandardToken ]);
     deployer.deploy(ERC20Lib);
     deployer.link(ERC20Lib, StandardToken);
-    deployer.deploy(StandardToken);   
+    deployer.deploy(StandardToken, accounts[0]);   
 }
