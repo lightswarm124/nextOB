@@ -41,12 +41,16 @@ library OpenBountyLib {
         self.unlockBlockNumber = 0;
     }
 
-    function isBountyManager (BountyStorage storage self, address account) view public returns (bool isTrue) {
+    function isBountyManager (BountyStorage storage self, address account) public view returns (bool isTrue) {
         return self.ProjectManagers[account];
     }
 
-    function isProjectOwner (BountyStorage storage self, address account) view public returns (bool isTrue) {
+    function isProjectOwner (BountyStorage storage self, address account) public view returns (bool isTrue) {
         if (self.ProjectOwner != account) return false;
+    }
+
+    function checkLockBlockNumber (BountyStorage storage self) public view returns (bool unlock) {
+        if (self.lockBlockNumber >= self.unlockBlockNumber) return false;
     }
 
     function changeProjectOwner (BountyStorage storage self, address _newProjectOwner) public returns (address newOwner) {
