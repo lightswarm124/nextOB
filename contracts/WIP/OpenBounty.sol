@@ -46,4 +46,15 @@ contract OpenBounty {
     function submitBounty(uint _tokenAmount, bytes32 _pullRequestID) public returns (bool success) {
         return bounty.submitBounty(_tokenAmount, _pullRequestID);
     }
+
+    event OwnerChanged (address _oldOwner, address _newOwner);
+    event ManagerAdded (address _newManager);
+    event ManagerDeleted (address _oldManager);
+    event BountySubmitted (address _bountyHunter, uint _tokenAmount, bytes32 _pullRequestID);
+    event BountyAccepted (address _projectManager, address _bountyHunter, uint _amount);
+    event BountyFunded (address _funder, uint _amount);
+    event BountyPending (address _locker, uint _lockBlockTime);
+    event BountyApproved (address _unlocker, uint _unlockBlockTime);
+    event BountyCLaimed (address _bountyHunter, uint _tokenAmount, uint _etherAmount);
+
 }
