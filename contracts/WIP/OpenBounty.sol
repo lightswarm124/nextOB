@@ -56,5 +56,4 @@ contract OpenBounty {
     event BountyPending (address _locker, uint _lockBlockTime);
     event BountyApproved (address _unlocker, uint _unlockBlockTime);
     event BountyCLaimed (address _bountyHunter, uint _tokenAmount, uint _etherAmount);
-
 }

@@ -99,6 +99,11 @@ library OpenBountyLib {
         BountyAccepted(msg.sender, self.pullRequests[_pullRequestID].bountyHunter, self.pullRequests[_pullRequestID].bountyValue);
         return true;
     }
+
+    function redeemBounty(BountyStorage storage self) public returns () {
+    
+    }
+
     event OwnerChanged (address _oldOwner, address _newOwner);
     event ManagerAdded (address _newManager);
     event ManagerDeleted (address _oldManager);

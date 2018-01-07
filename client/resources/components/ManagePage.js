@@ -8,9 +8,6 @@ import PullRequestCard from './PullRequestCard'
 
 
 class ManagePage extends Component {
-
-
-
   // Use the data passed in by App.js in githubInfo the way you'd like. For now, dummy data:
   constructor(props) {
 
