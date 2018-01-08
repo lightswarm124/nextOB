@@ -1,10 +1,6 @@
 pragma solidity ^0.4.18;
 
-import "./ERC20Lib.sol";
-
 library OpenBountyLib {
-    using ERC20Lib for ERC20Lib.TokenStorage;
-
     struct BountyStorage {
         lockState bountyStatus;
         address ProjectOwner;
