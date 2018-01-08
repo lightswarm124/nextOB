@@ -1,6 +1,10 @@
 pragma solidity ^0.4.18;
 
+import "./ERC20Lib.sol";
+
 library OpenBountyLib {
+    using ERC20Lib for ERC20Lib.TokenStorage;
+
     struct BountyStorage {
         lockState bountyStatus;
         address ProjectOwner;
@@ -23,7 +27,7 @@ library OpenBountyLib {
         Approved
     }
 
-    function init (BountyStorage storage self) public {
+    function init (BountyStorage storage self, uint _initialSupply) public {
         self.ProjectOwner = msg.sender;
         self.ProjectManagers[msg.sender] = true;
         self.lockBlockNumber = 0;
@@ -96,12 +100,13 @@ library OpenBountyLib {
         require(self.pullRequests[_pullRequestID].pullRequestStatus == lockState.Pending && self.ProjectManagers[msg.sender] == true && self.pullRequests[_pullRequestID].approveManager == address(0));
         self.pullRequests[_pullRequestID].approveManager = msg.sender;
         self.pullRequests[_pullRequestID].pullRequestStatus = lockState.Approved;
+        if (self.bountyStatus == lockState.Inactive) self.bountyStatus = lockState.Pending;
         BountyAccepted(msg.sender, self.pullRequests[_pullRequestID].bountyHunter, self.pullRequests[_pullRequestID].bountyValue);
         return true;
     }
 
-    function redeemBounty(BountyStorage storage self) public returns () {
-    
+    function redeemBounty(BountyStorage storage self, uint _redeemAmount) public returns (uint redemption) {
+        require(self.bountyStatus == lockState.Approved);
     }
 
     event OwnerChanged (address _oldOwner, address _newOwner);
