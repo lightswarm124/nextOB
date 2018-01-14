@@ -11,9 +11,6 @@ library ERC20Lib {
         uint totalSupply;
     }
 
-    event Transfer(address indexed from, address indexed to, uint value);
-    event Approval(address indexed owner, address indexed spender, uint value);
-
     function init(TokenStorage storage self, uint _initialSupply) public {
         self.totalSupply = _initialSupply;
         self.balances[msg.sender] = _initialSupply;
@@ -49,4 +46,7 @@ library ERC20Lib {
     function allowance(TokenStorage storage self, address _owner, address _spender) public constant returns (uint balance) {
         return self.allowed[_owner][_spender];
     }
+
+    event Transfer(address indexed from, address indexed to, uint value);
+    event Approval(address indexed owner, address indexed spender, uint value);
 }

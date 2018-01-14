@@ -15,6 +15,10 @@ contract OpenBounty {
         token.init(_initialSupply);
     }
 
+    function projectOwner() public view returns (address ownerAddress) {
+        return bounty.ProjectOwner;
+    }
+
     function isBountyManager(address account) public view returns (bool isTrue) {
         return bounty.isBountyManager(account);
     }

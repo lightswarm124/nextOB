@@ -4,12 +4,12 @@ contract('Test OpenBounty Initialization', (accounts) => {
     it('Test address initialization', async () => {
         let ownerAddress;
 
-        OpenBounty.new({from: accounts[0]})
+        OpenBounty.new()
         .then((inst) => {
-            return inst.bounty.ProjectOwner;
+            return inst.bounty.ProjectOwner(accounts[0]);
         }).then((addr) => {
             ownerAddress = addr;
-            assert.equal(ownerAddress, accounts[0], 'Contract deployer is not set to ProjectOwner'); 
+            assert.equal(ownerAddress, accounts[0], 'Contract deployer is not set to ProjectOwner');
         });
         /*
         OpenBounty.deployed()
@@ -20,4 +20,4 @@ contract('Test OpenBounty Initialization', (accounts) => {
         });
         */
     });
-});  
+});
