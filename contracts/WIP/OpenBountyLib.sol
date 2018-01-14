@@ -23,7 +23,7 @@ library OpenBountyLib {
         Approved
     }
 
-    function init (BountyStorage storage self, uint _initialSupply) public {
+    function init (BountyStorage storage self) public {
         self.ProjectOwner = msg.sender;
         self.ProjectManagers[msg.sender] = true;
         self.lockBlockNumber = 0;
@@ -38,7 +38,7 @@ library OpenBountyLib {
         if (self.ProjectOwner != account) return false;
     }
 
-    function checkLockBlockNumber (BountyStorage storage self) public view returns (bool unlock) {
+    function checkBlockLock (BountyStorage storage self) public view returns (bool unlock) {
         if (self.lockBlockNumber >= self.unlockBlockNumber) return false;
     }
 
@@ -99,10 +99,6 @@ library OpenBountyLib {
         if (self.bountyStatus == lockState.Inactive) self.bountyStatus = lockState.Pending;
         BountyAccepted(msg.sender, self.pullRequests[_pullRequestID].bountyHunter, self.pullRequests[_pullRequestID].bountyValue);
         return true;
-    }
-
-    function redeemBounty(BountyStorage storage self, uint _redeemAmount) public returns (uint redemption) {
-        require(self.bountyStatus == lockState.Approved);
     }
 
     event OwnerChanged (address _oldOwner, address _newOwner);

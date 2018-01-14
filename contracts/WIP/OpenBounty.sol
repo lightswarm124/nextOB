@@ -1,14 +1,18 @@
 pragma solidity ^0.4.18;
 
+import "./ERC20Lib.sol";
 import "./OpenBountyLib.sol";
 
 contract OpenBounty {
+    using ERC20Lib for ERC20Lib.TokenStorage;
     using OpenBountyLib for OpenBountyLib.BountyStorage;
 
+    ERC20Lib.TokenStorage token;
     OpenBountyLib.BountyStorage bounty;
 
-    function OpenBounty() public {
+    function OpenBounty(uint _initialSupply) public {
         bounty.init();
+        token.init(_initialSupply);
     }
 
     function isBountyManager(address account) public view returns (bool isTrue) {
@@ -19,8 +23,8 @@ contract OpenBounty {
         return bounty.isProjectOwner(account);
     }
 
-    function checkLockBlockNumber () public view returns (bool unlock) {
-        return bounty.checkLockBlockNumber();
+    function checkBlockLock () public view returns (bool unlock) {
+        return bounty.checkBlockLock();
     }
 
     function changeProjectOwner(address _newProjectOwner) public returns (address newOwner) {
@@ -46,6 +50,52 @@ contract OpenBounty {
     function submitBounty(uint _tokenAmount, bytes32 _pullRequestID) public returns (bool success) {
         return bounty.submitBounty(_tokenAmount, _pullRequestID);
     }
+
+    function acceptBounty(bytes32 _pullRequestID) public returns (bool success) {
+        bounty.acceptBounty(_pullRequestID);
+        address bountyHunter = bounty.pullRequests[_pullRequestID].bountyHunter;
+        uint tokenAmount = bounty.pullRequests[_pullRequestID].bountyValue;
+        return token.transfer(bountyHunter, tokenAmount);
+    }
+
+    function claimBounty(uint _tokenAmount) public returns (bool success) {
+        require(
+            bounty.lockBlockNumber < bounty.unlockBlockNumber
+            && bounty.bountyStatus == OpenBountyLib.lockState.Approved
+            && token.balanceOf(msg.sender) >= _tokenAmount
+            && msg.sender != bounty.ProjectOwner);
+        uint tokenRatio = _tokenAmount / token.totalSupply;
+        uint bountyAmount = this.balance * tokenRatio;
+        msg.sender.transfer(bountyAmount);
+        return true;
+    }
+
+    function totalSupply() public constant returns (uint tokenSupply) {
+        return token.totalSupply;
+    }
+
+    function balanceOf(address who) public constant returns (uint balance) {
+        return token.balanceOf(who);
+    }
+
+    function transfer(address to, uint value) public returns (bool success) {
+        return token.transfer(to, value);
+    }
+
+    function transferFrom(address from, address to, uint value) public returns (bool success) {
+        return token.transferFrom(from, to, value);
+    }
+
+    function approve(address spender, uint value) public returns (bool success) {
+        return token.approve(spender, value);
+    }
+
+    function allowance(address owner, address spender) public constant returns (uint balance) {
+        return token.allowance(owner, spender);
+    }
+
+    event Transfer(address indexed from, address indexed to, uint value);
+    event Approval(address indexed owner, address indexed spender, uint value);
 
     event OwnerChanged (address _oldOwner, address _newOwner);
     event ManagerAdded (address _newManager);
