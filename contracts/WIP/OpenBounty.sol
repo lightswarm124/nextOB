@@ -70,6 +70,7 @@ contract OpenBounty {
             && msg.sender != bounty.ProjectOwner);
         uint tokenRatio = _tokenAmount / token.totalSupply;
         uint bountyAmount = this.balance * tokenRatio;
+		require(this.balance > bountyAmount);
         msg.sender.transfer(bountyAmount);
         return true;
     }
@@ -97,6 +98,11 @@ contract OpenBounty {
     function allowance(address owner, address spender) public constant returns (uint balance) {
         return token.allowance(owner, spender);
     }
+
+	function () public payable {
+		require(bounty.bountyStatus != OpenBountyLib.lockState.Inactive);
+		BountyFunded(msg.sender, msg.value);
+	}
 
     event Transfer(address indexed from, address indexed to, uint value);
     event Approval(address indexed owner, address indexed spender, uint value);

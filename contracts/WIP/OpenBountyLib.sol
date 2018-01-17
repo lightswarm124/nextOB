@@ -43,7 +43,10 @@ library OpenBountyLib {
     }
 
     function changeProjectOwner (BountyStorage storage self, address _newProjectOwner) public returns (address newOwner) {
-        require (msg.sender == self.ProjectOwner && _newProjectOwner != address(0) && _newProjectOwner != self.ProjectOwner);
+        require (msg.sender == self.ProjectOwner
+				&& _newProjectOwner != address(0)
+				&& _newProjectOwner != self.ProjectOwner
+				&& self.bountyStatus != lockState.Approved);
         self.ProjectOwner = _newProjectOwner;
         OwnerChanged(msg.sender, self.ProjectOwner);
         return self.ProjectOwner;
