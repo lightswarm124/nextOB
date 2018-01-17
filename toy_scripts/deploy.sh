@@ -1,3 +1,3 @@
 #!/bin/bash
 
-truffle compile; truffle migrate --reset
+truffle compile --all; truffle migrate --reset
