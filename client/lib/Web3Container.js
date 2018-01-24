@@ -2,7 +2,7 @@ import React from 'react'
 import getWeb3 from './getWeb3'
 import getAccounts from './getAccounts'
 import getContract from './getContract'
-import contractDefinition from '../../build/contracts/SimpleStorage.json'
+import contractDefinition from '../../build/contracts/OpenBounty.json'
 
 export default class Web3Container extends React.Component {
   state = { web3: null, accounts: null, contract: null }

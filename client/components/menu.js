@@ -7,6 +7,13 @@ export default () => (
 	    <Link prefetch href="/"><img src="/static/logo.svg" alt="Cartoon"/></Link>
 	  </div>
 	  <ul>
+	  	<li><Link prefetch href="/accounts">
+		  	<a>
+			  	<svg><rect x="0" y="0" fill="none" width="100%" height="100%" /></svg>
+			  	Accounts
+			  	<div className="mobile"><img src="/static/avatar.svg" alt="Biography"/></div>
+		  	</a>
+	  	</Link></li>
 	    <li><Link prefetch href="/index2">
     		<a>
    				<svg><rect x="0" y="0" fill="none" width="100%" height="100%" /></svg>
