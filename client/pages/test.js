@@ -23,7 +23,7 @@ class Repos extends Component {
     }
     
     async fetchRepos() {
-        const response = await fetch(`https://api.github.com/users/lightswarm124/repos`);
+        const response = await fetch(`https://api.github.com/repos/lightswarm124/`);
         const data = await response.json();
         return this.setState({
             repos: data,
