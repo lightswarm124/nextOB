@@ -1,7 +1,7 @@
 pragma solidity ^0.4.18;
 
 contract Owned {
-    address owner
+    address owner;
     event OwnershipTransferred (address indexed previousOwner, address index newOwner);
 
     modifier onlyOwner {
@@ -23,6 +23,13 @@ contract Owned {
 contract Registrar is Owned {
     struct Token {
         address addr;
-        address ownerAddr;        
+        address ownerAddr;
     }
+
+	function set(address _addr, address _ownerAddr) public {
+	  storedContractData = x;
+	}
+
+	function get() public view returns (address) {
+	  return storedContractData;
 }

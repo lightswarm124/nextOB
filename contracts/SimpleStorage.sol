@@ -2,13 +2,13 @@
 pragma solidity ^0.4.18;
 
 contract SimpleStorage {
-  uint storedData;
+  address storedContractData;
 
-  function set(uint x) public {
-    storedData = x;
+  function set(address x) public {
+    storedContractData = x;
   }
 
-  function get() public view returns (uint) {
-    return storedData;
+  function get() public view returns (address) {
+    return storedContractData;
   }
 }
