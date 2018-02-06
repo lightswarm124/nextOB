@@ -16,7 +16,7 @@ export default () => (
             <Link href="/dapp"><a className="nav-link">Dapp</a></Link>
           </li>
 		  <li className="nav-item">
-			<Link href="/about"><a className="nav-link">About</a></Link>
+			<Link href="/dashboard"><a className="nav-link">Dashboard</a></Link>
 		  </li>
 		  <li className="nav-item">
 			<Link href="/login"><a className="nav-link">Login</a></Link>
