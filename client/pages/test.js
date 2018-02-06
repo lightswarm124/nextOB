@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+/*import React, {Component} from 'react';
 import Link from 'next/link';
 import {Layout, Spinner} from '../components';
 import fetch from 'isomorphic-fetch';
@@ -21,7 +21,7 @@ class Repos extends Component {
             loading: true
         }
     }
-    
+
     async fetchRepos() {
         const response = await fetch(`https://api.github.com/repos/lightswarm124/`);
         const data = await response.json();
@@ -53,5 +53,3 @@ export default () => (<Layout title="Repos" content={Repos}/>)
 <p></p>
 <blockquote></blockquote>
 */
-
-
