@@ -1,13 +1,17 @@
-import React from 'react'
-import Head from 'next/head'
-import { Menu } from './'
+import Head from 'next/head';
+import Navbar from './Navbar';
 
-export default (props) => {
-  const Content = props.content
-  return (
-  <main role="content">
-    <Head><title>Lightswarm  |  {props.title}</title></Head>
-    <Menu />
-    <Content />
-  </main>
-)}
+const Layout = (props) => (
+    <div>
+        <Head>
+            <title>OpenBounty</title>
+            <link rel="stylesheet" href="http://bootswatch.com/4/cerulean/bootstrap.min.css"/>
+        </Head>
+        <Navbar/>
+        <div className="container">
+            {props.children}
+        </div>
+    </div>
+);
+
+export default Layout;

@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Web3Container from '../lib/Web3Container'
+import Layout from '../components/Layout';
 
 class Dapp extends React.Component {
   state = { balance: undefined }
@@ -20,16 +21,18 @@ class Dapp extends React.Component {
   render () {
     const { balance = 'N/A' } = this.state
     return (
-      <div>
-        <h1>My Dapp</h1>
+		<Layout>
+	      <div>
+	        <h1>My Dapp</h1>
 
-        <button onClick={this.storeValue}>Store 5 into account balance</button>
-        <button onClick={this.getValue}>Get account balance</button>
-        <div>Balance: {balance}</div>
+	        <button onClick={this.storeValue}>Store 5 into account balance</button>
+	        <button onClick={this.getValue}>Get account balance</button>
+	        <div>Balance: {balance}</div>
 
-        <div><Link href='/accounts'><a>My Accounts</a></Link></div>
-        <div><Link href='/'><a>Home</a></Link></div>
-      </div>
+	        <div><Link href='/accounts'><a>My Accounts</a></Link></div>
+	        <div><Link href='/'><a>Home</a></Link></div>
+	      </div>
+		</Layout>
     )
   }
 }

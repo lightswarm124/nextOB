@@ -1,29 +1,12 @@
-import React from 'react'
-import {Layout} from '../components'
+import Layout from '../components/Layout';
 
-const Logo = () => (
-	<div className="logo">
-		<img src="/static/Logo_Black.svg" alt="Lightswarm"/>
-		<style>{`
-			.logo {
-			  position:relative;
-			  text-align: center;
-			  display: block;
-			  width: 100%;
-			}
-			.logo img {
-				  width: auto;
-				  height: 30vw;
-				  max-height: 160px;
-			}
-			@media screen and (orientation: landscape) {
-				.logo img { height: 20vw; }
-			}
-			@media screen and (min-width: 1248px) {
-			  .logo img { max-height: 200px !important; }
-			}
-		`}</style>
-	</div>
-)
+const Index = () => (
+	<Layout>
+    	<div>
+      		<h1>Welcome to OpenBounty</h1>
+      		<p>Check Us Out</p>
+		</div>
+	</Layout>
+);
 
-export default () => (<Layout title="Home" content={Logo}/>)
+export default Index;

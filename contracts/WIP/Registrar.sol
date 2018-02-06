@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+/*pragma solidity ^0.4.18;
 
 contract Owned {
     address owner;
@@ -33,3 +33,4 @@ contract Registrar is Owned {
 	function get() public view returns (address) {
 	  return storedContractData;
 }
+*/

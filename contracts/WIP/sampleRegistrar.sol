@@ -1,4 +1,4 @@
-//sol NameReg
+/*//sol NameReg
 // Simple global name registrar.
 // @authors:
 //   Gav Wood <g@ethdev.com>
@@ -29,7 +29,7 @@ contract NameReg is service(1), owned, NameRegister {
 		// Unregister previous name if there was one.
 		if (toName[msg.sender] != "")
 			toAddress[toName[msg.sender]] = 0;
-			
+
 		toName[msg.sender] = name;
 		toAddress[name] = msg.sender;
 		AddressRegistered(msg.sender);
@@ -51,7 +51,7 @@ contract NameReg is service(1), owned, NameRegister {
 	function nameOf(address addr) constant returns (string32 name) {
 		return toName[addr];
 	}
-	
+
 	mapping (address => string32) toName;
 	mapping (string32 => address) toAddress;
 }
@@ -72,4 +72,3 @@ var NameReg = web3.eth.contractFromAbi([{"constant":true,"inputs":[{"name":"_own
 web3.eth.contract(addrNameReg, abiNameReg).register("My Name").transact();
 
 */
-
