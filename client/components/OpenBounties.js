@@ -1,4 +1,4 @@
-const ActiveProjects = () => (
+const OpenBounties = () => (
     	<div>
       		<h2>Active Projects</h2>
           <ul>
@@ -11,4 +11,4 @@ const ActiveProjects = () => (
 
 );
 
-export default ActiveProjects;
+export default OpenBounties;

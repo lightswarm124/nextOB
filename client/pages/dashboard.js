@@ -1,12 +1,14 @@
 import Layout from '../components/Layout';
 import SidebarWidget from '../components/SidebarWidget';
-import ActiveProjects from '../components/ActiveProjects';
-import ActiveContributions from '../components/ActiveContributions';
+import OpenBounties from '../components/OpenBounties';
+import ManagedProjects from '../components/ManagedProjects';
 import Head from 'next/head'
 
-const styleContainer = {
+const dashboardStyle = {
 	alignItems: 'center',
-  backgroundColor: 'white',
+	width: "100%",
+	margin: "1%",
+  backgroundColor: 'lightgrey',
   color: 'grey',
   display: 'flex',
   flexFlow: 'row wrap',
@@ -14,21 +16,32 @@ const styleContainer = {
   minHeight: '100vh',
   padding: '1em',
 }
-const dashStyle = {
-	margin: '30px',
-	border: '2px',
+const titleStyle = {
+	color: "black",
 }
 
+const openBountiesStyle = {
+	color: 'red',
+	display: 'inline',
+}
+
+const sidebarWidgetStyle = {
+	color: 'green',
+}
 const Dashboard = () => (
 	<Layout>
-    	<div style={styleContainer}>
-      		<h1>Dashboard</h1>
-      		<p>Keep track of any projects you created or are working on.</p>
-          <SidebarWidget/>
-          <ActiveProjects />
-          <ActiveContributions />
-
-		</div>
+    	<h1 style={titleStyle}>Dashboard</h1>
+				<div style={dashboardStyle}>
+					<div style={openBountiesStyle}>
+						<OpenBounties />
+					</div>
+					<div style={sidebarWidgetStyle}>
+	          <SidebarWidget/>
+					</div>
+					<div>
+	          <ManagedProjects />
+				 </div>
+			 </div>
 	</Layout>
 );
 
