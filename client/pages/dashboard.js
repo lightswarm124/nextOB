@@ -22,7 +22,7 @@ const titleStyle = {
 
 
 
-}
+
 const Dashboard = () => (
 	<Layout>
     	<h1 style={titleStyle}>Dashboard</h1>

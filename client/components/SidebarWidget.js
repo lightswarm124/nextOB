@@ -1,8 +1,9 @@
 const sidebarWidgetStyle = {
 	color: 'green',
+}
 
 const SidebarWidget = () => (
-    	<div>
+    	<div style={sidebarWidgetStyle}>
       		<h2>Accounts</h2>
           <ul>
         	   <li> 0xHGIGkbsiGIYGDyihvsdksfd</li>
