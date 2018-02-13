@@ -1,5 +1,18 @@
 const sidebarWidgetStyle = {
 	color: 'green',
+  height: '20em',
+  width: '20em',
+  alignItems: 'center',
+  flexAlign: 'center',
+  backgroundColor: '#ffffff',
+  border: '1px solid #eeeeee',
+  display: 'flex',
+  display: 'flexbox',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  margin: '1em',
+  padding: '1em',
+
 }
 
 const SidebarWidget = () => (

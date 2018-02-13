@@ -1,11 +1,23 @@
 const openBountiesStyle = {
 	color: 'red',
-	display: 'inline',
+  height: '20em',
+  width: '20em',
+  alignItems: 'center',
+  flexAlign: 'center',
+  backgroundColor: '#ffffff',
+  border: '1px solid #eeeeee',
+  display: 'flex',
+  display: 'flexbox',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  margin: '1em',
+  padding: '1em',
+
 }
 
 
 const OpenBounties = () => (
-    	<div>
+    	<div style={openBountiesStyle}>
       		<h2>Bounties in Progress </h2>
           <ul>
         	   <li> Translate Whitepaper into Chinese - icarloszz.github.com </li>
