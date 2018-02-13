@@ -1,3 +1,5 @@
+const sidebarWidgetStyle = {
+	color: 'green',
 
 const SidebarWidget = () => (
     	<div>

@@ -20,22 +20,17 @@ const titleStyle = {
 	color: "black",
 }
 
-const openBountiesStyle = {
-	color: 'red',
-	display: 'inline',
-}
 
-const sidebarWidgetStyle = {
-	color: 'green',
+
 }
 const Dashboard = () => (
 	<Layout>
     	<h1 style={titleStyle}>Dashboard</h1>
 				<div style={dashboardStyle}>
-					<div style={openBountiesStyle}>
+					<div>
 						<OpenBounties />
 					</div>
-					<div style={sidebarWidgetStyle}>
+					<div>
 	          <SidebarWidget/>
 					</div>
 					<div>
